@@ -1,0 +1,54 @@
+[url "ssh://172.16.0.9/smartisanos/googlesource/"]
+     insteadOf = "https://android.googlesource.com/"
+[core]
+	autocrlf = false
+	excludesfile=~/.gitignore
+[user]
+	name = "chenchunsheng"
+	email = chenchunsheng@smartisan.cn
+[diff]
+	renames = copy
+	wordregex = "[[:alnum:]_]+|[^[:space:]]"
+    external = /home/chenchunsheng/bin/git-diff-wrapper.sh
+    ;external = /home/chenchunsheng/bin/meld.py
+[difftool]
+    prompt = false
+[merge]
+    summary = true
+    ;tool = bcompare
+    tool = vimdiff
+[mergetool]
+    prompt = false
+[i18n]
+	logoutputencoding = UTF-8
+[color]
+	diff = auto
+	status = true
+	branch = auto
+	interactive = auto;
+	ui = auto;
+[showbranch]
+	default = --topo-order
+	default = heads/*
+[status]
+	submodulesummary = -1
+[format]
+	numbered = auto
+[push]
+	default = tracking
+
+[alias]
+	sed = !git ls-files --stage | grep ^100 | awk '{print $4}' | xargs sed -r -s
+	slg = shortlog --pretty='format:%h %s'
+	locate = !sh -c 'git ls-files | grep --color=auto "$1"' -
+	co=checkout
+        ci=commit -s -a
+        br=branch
+        st=status -s
+        cp=cherry-pick
+        cr=cherry
+        rb=rebase
+        fp=format-patch
+        hist=log --pretty=format:\"%Cred%h %Cblue%ad %Cred| %Creset%s%d %Cgreen[%an]\" --graph --date=short
+        flog=log --pretty=fuller --graph	
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
